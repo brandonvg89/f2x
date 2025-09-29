@@ -3,10 +3,7 @@ package com.f2x.prueba.model;
 import com.f2x.prueba.dto.ClientDto;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Table
@@ -33,13 +30,9 @@ public class Client {
     @Column(name = "mail")
     private String mail;
 
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_created")
     private Date dateCreated;
 
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_modified")
     private Date dateModified;
 

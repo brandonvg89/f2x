@@ -28,7 +28,10 @@ public class ClientController {
 
     @DeleteMapping("/delete")
     private ResponseEntity<ClientDto> deleteClient(@Valid @RequestBody ClientDto clientDto) {
-        clientService.deleteClient(clientDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(clientService.deleteClient(clientDto)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

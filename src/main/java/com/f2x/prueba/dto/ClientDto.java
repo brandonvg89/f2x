@@ -3,8 +3,10 @@ package com.f2x.prueba.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
@@ -15,9 +17,9 @@ public class ClientDto {
     private int id;
     private String identificationType;
     private String identificationNumber;
-    @Min(2)
+    @Size(min = 2, message = "The name must have at least 2 characters")
     private String name;
-    @Min(2)
+    @Size(min = 2, message = "The lastname must have at least 2 characters")
     private String lastname;
     @NotBlank(message = "Email cannot be blank")
     @Email(message = "Invalid email format")
