@@ -46,11 +46,17 @@ public class ProductServiceImpl implements ProductService {
                 Product product = productRepository.findById(productDto.getId()).orElseThrow();
                 BeanUtils.copyProperties(productDto, product);
                 product.setDateModified(new Date());
+                Client client = new Client();
+                BeanUtils.copyProperties(productDto.getClient(), client);
+                product.setClient(client);
                 return productRepository.save(product).convertToDto();
             }
             case ProductStatus.CANCELADA -> {
                 Product product = productRepository.findById(productDto.getId()).orElseThrow();
                 product.setDateModified(new Date());
+                Client client = new Client();
+                BeanUtils.copyProperties(productDto.getClient(), client);
+                product.setClient(client);
                 if (product.getBalance() == 0) {
                     product.setProductStatus(ProductStatus.CANCELADA);
                     return productRepository.save(product).convertToDto();
